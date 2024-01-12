@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "ankibot/sso.v1";
+
+service Auth {
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  rpc Login(LoginRequest) returns (LoginResponse);
+  rpc IsAdmin(IsAdminRequest) returns (IsAdminResponse);
+}
+
+message RegisterRequest {
+  string chat_id = 1;
+}
+
+message RegisterResponse {
+  string user_id = 1;
+}
+
+message LoginRequest {
+  string chat_id = 1;
+  string app_id = 3;
+}
+
+message LoginResponse {
+  string user_id = 1;
+}
+
+message IsAdminRequest {
+  string chat_id = 1;
+}
+
+message IsAdminResponse {
+  bool is_admin = 1;
+}
