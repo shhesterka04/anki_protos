@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package auth;
 
+import "google/protobuf/descriptor.proto";
+
 option go_package = "ankibot/sso.v1";
 
 service Auth {
@@ -11,7 +13,7 @@ service Auth {
 }
 
 message RegisterRequest {
-  string chat_id = 1;
+  string chat_id = 1 [(my_custom_tag) = "tag_value"];
 }
 
 message RegisterResponse {
@@ -33,4 +35,9 @@ message IsAdminRequest {
 
 message IsAdminResponse {
   bool is_admin = 1;
+}
+
+// Define custom options for your custom tags
+extend google.protobuf.FieldOptions {
+  string my_custom_tag = 1000;
 }
